@@ -57,10 +57,12 @@ public:
             last_clock = OC::CORE::ticks;
             ForEachChannel(ch)
             {
-                int rotation = Proportion(DetentedIn(ch), HEMISPHERE_MAX_CV, length[ch]);
+//                 int rotation = Proportion(DetentedIn(ch), HEMISPHERE_MAX_CV, length[ch]);
+                int steps = Proportion(DetentedIn(ch), HEMISPHERE_MAX_CV, beats[ch]);
 
                 // Store the pattern for display
-                pattern[ch] = EuclideanPattern(length[ch] - 1, beats[ch], rotation);
+//                 pattern[ch] = EuclideanPattern(length[ch] - 1, beats[ch], rotation);
+                pattern[ch] = EuclideanPattern(length[ch] - 1, beats[ch], 0);
                 int sb = step % length[ch];
                 if ((pattern[ch] >> sb) & 0x01) {
                     ClockOut(ch);
